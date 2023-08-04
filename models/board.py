@@ -16,6 +16,7 @@ class MonopolyBoard:
 
     def traverse_board(self, steps):
         # This function will simulate a player's movement on the board
+        # TODO: does this properly traverse moving backwards?
         current = self.head
         for _ in range(steps):
             current = current.next_space
