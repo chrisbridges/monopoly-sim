@@ -1,4 +1,3 @@
-# Complete Community Chest Cards
 community_chest_cards = [
     {"description": "Advance to Go. (Collect $200)", "action": "move", "value": "Go"},
     {"description": "Bank error in your favor. Collect $200.", "action": "collect", "value": 200},

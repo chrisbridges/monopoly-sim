@@ -16,5 +16,3 @@ chance_cards = [
     {"description": "Your building and loan matures. Collect $150.", "action": "collect", "value": 150},
     {"description": "You have won a crossword competition. Collect $100.", "action": "collect", "value": 100}
 ]
-
-community_chest_cards[:3], chance_cards[:3]  # Display the first 3 cards of each type for demonstration
