@@ -48,6 +48,15 @@ class Player:
         # In a real game, we'd also deduct the purchase price from the player's money
         self.properties_owned.append(property_name)
 
+    def attempt_to_buy_property(self, spaces):
+        current_space = spaces[self.position]
+        if current_space[1] == 'Property' and 'owner' not in current_space[2] and self.money >= current_space[2]['purchase_price']:
+            # Buy the property
+            self.money -= current_space[2]['purchase_price']
+            self.properties_owned(current_space[0])
+            current_space[2]['owner'] = self.token
+            print(f'{self.token} bought {current_space[0]} for {current_space[2]["purchase_price"]}. Remaining money: {self.money}')
+
     def pay_money(self, amount: int):
         self.money -= amount
 
