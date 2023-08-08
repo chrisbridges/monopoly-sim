@@ -2,7 +2,7 @@ chance_cards = [
     {"description": "Advance to Go. (Collect $200)", "action": "move", "value": "Go"},
     {"description": "Advance to Illinois Ave.", "action": "move", "value": "Illinois Avenue"},
     {"description": "Advance token to nearest Utility.", "action": "move_to_nearest", "value": "Utility"}, #if owned pay owner 10x
-    {"description": "Advance token to the nearest Railroad.", "action": "move_to_nearest", "value": "Railroad"}, #nearest can also mean backwards
+    {"description": "Advance token to the nearest Railroad.", "action": "move_to_nearest", "value": "Railroad"}, #nearest can also mean backwards? Just focus on forward for now
     {"description": "Advance to St. Charles Place.", "action": "move", "value": "St. Charles Place"},
     {"description": "Bank pays you dividend of $50.", "action": "collect", "value": 50},
     {"description": "Get out of jail free.", "action": "get_out_of_jail", "value": None},
