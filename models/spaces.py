@@ -69,12 +69,10 @@ rent_values = {
     "Boardwalk": [200, 600, 1400, 1700, 2000]
 }
 
+updated_spaces = []
 
 def add_rent_values_to_spaces():
-
 # Add the rent information to the spaces list
-    updated_spaces = []
-
     for space in spaces:
         if space[1] == "Property":
             property_name = space[0]
@@ -95,3 +93,13 @@ def add_rent_values_to_spaces():
             updated_spaces.append(space)
 
     return updated_spaces
+
+def add_is_mortgaged_flag():
+    # Add "is_mortgaged" key to properties, railroads, and utilities
+    for space in updated_spaces:
+        if space[1] in ["Property", "Railroad", "Utility"]:
+            space[2]["is_mortgaged"] = False
+
+
+
+# TODO: how to handle the transfers of properties / cash when a player is bankrupt
