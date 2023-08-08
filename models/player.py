@@ -1,5 +1,7 @@
+from board import MonopolyBoard
+
 class Player:
-    def __init__(self, name, token):
+    def __init__(self, name: str, token: str):
         self.name = name
         self.money = 1500
         self.properties_owned = []
@@ -7,7 +9,7 @@ class Player:
         self.token = token
         self.current_position = 0  # Starting at "Go"
 
-    def move(self, steps, board):
+    def move(self, steps, board: MonopolyBoard):
         for _ in range(steps):
             self.current_position = board.traverse_board(1)
         return self.current_position
@@ -16,10 +18,10 @@ class Player:
         # In a real game, we'd also deduct the purchase price from the player's money
         self.properties_owned.append(property_name)
 
-    def pay_money(self, amount):
+    def pay_money(self, amount: int):
         self.money -= amount
 
-    def receive_money(self, amount):
+    def receive_money(self, amount: int):
         self.money += amount
 
     def __repr__(self):

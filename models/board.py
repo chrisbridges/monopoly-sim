@@ -1,3 +1,5 @@
+from board_space import BoardSpace
+
 class MonopolyBoard:
     def __init__(self):
         self.head = None
