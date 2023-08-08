@@ -1,5 +1,5 @@
 from board import MonopolyBoard
-# from ..utils import roll_the_dice()
+from utils.roll_dice import *
 class Player:
     def __init__(self, name: str, token: str):
         self.name = name
@@ -10,7 +10,7 @@ class Player:
         self.current_position = 0  # Starting at "Go"
 
     def move(self, spaces):
-        # dice1, dice2 = utils.
+        dice1, dice2 = roll_two_dice()
         if self.is_in_jail:
             if dice1 == dice2:
                 print(f'{self.token} rolled doubles {dice1} and {dice2} and leaves the jail.')
