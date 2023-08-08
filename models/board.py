@@ -1,4 +1,4 @@
-from board_space import BoardSpace
+from models.board_space import BoardSpace
 
 class MonopolyBoard:
     def __init__(self):
@@ -17,6 +17,7 @@ class MonopolyBoard:
             self.tail.next_space = self.head  # Making it circular
 
     def traverse_board(self, steps):
+        # FIXME: do I need this if player position is tracked there?
         # This function will simulate a player's movement on the board
         # TODO: does this properly traverse moving backwards?
         current = self.head
