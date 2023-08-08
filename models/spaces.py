@@ -1,4 +1,5 @@
 # Complete Monopoly board spaces with their names, types, and details (if any)
+# TODO: any advantage in stripping this to just property names and programmatically adding all values on init?
 spaces = [
     ("Go", "Go"),
     ("Mediterranean Avenue", "Property", {"purchase_price": 60, "base_rent": 2, "mortgage_value": 30}),
@@ -68,26 +69,29 @@ rent_values = {
     "Boardwalk": [200, 600, 1400, 1700, 2000]
 }
 
-# Add the rent information to the spaces list
-updated_spaces = []
 
-for space in spaces:
-    if space[1] == "Property":
-        property_name = space[0]
-        if property_name in rent_values:
-            rent_info = rent_values[property_name]
-            rents = {
-                1: rent_info[0],
-                2: rent_info[1],
-                3: rent_info[2],
-                4: rent_info[3],
-                5: rent_info[4]  # 5 houses is equivalent to a hotel
-            }
-            updated_space = (space[0], space[1], {**space[2], "rents": rents})
-            updated_spaces.append(updated_space)
+def add_rent_values_to_spaces():
+
+# Add the rent information to the spaces list
+    updated_spaces = []
+
+    for space in spaces:
+        if space[1] == "Property":
+            property_name = space[0]
+            if property_name in rent_values:
+                rent_info = rent_values[property_name]
+                rents = {
+                    1: rent_info[0],
+                    2: rent_info[1],
+                    3: rent_info[2],
+                    4: rent_info[3],
+                    5: rent_info[4]  # 5 houses is equivalent to a hotel
+                }
+                updated_space = (space[0], space[1], {**space[2], "rents": rents})
+                updated_spaces.append(updated_space)
+            else:
+                updated_spaces.append(space)
         else:
             updated_spaces.append(space)
-    else:
-        updated_spaces.append(space)
 
-updated_spaces
+    return updated_spaces
