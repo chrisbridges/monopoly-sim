@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  web:
+    build: ./web
+    container_name: monopoly_web
+    volumes:
+      - ./web:/app  # Mount for live code updates (optional in production)
+    ports:
+      - "8000:8000"  # Expose the web dashboard on localhost:8000
+    depends_on:
+      - simulation
+      - db
+    environment:
+      # Example environment variables
+      - DATABASE_HOST=db
+      - DATABASE_NAME=monopoly
+      - SIMULATION_SERVICE_URL=http://simulation:5000
+
+  simulation:
+    build: ./simulation
+    container_name: monopoly_simulation
+    volumes:
+      - ./simulation:/app
+    depends_on:
+      - db
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_NAME=monopoly
+
+  db:
+    image: mongo:latest
+    container_name: monopoly_db
+    ports:
+      - "27017:27017"  # Access MongoDB on localhost:27017
+    environment:
+      # Example: set root username and password
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    volumes:
+      - mongo_data:/data/db
+
+  logging:
+    build: ./logging
+    container_name: monopoly_logging
+    # If you need to expose Fluentd port externally:
+    # ports:
+    #   - "24224:24224"
+    depends_on:
+      - web
+      - simulation
+      - db
+
+  test:
+    build: ./tests
+    container_name: monopoly_tests
+    # If integration tests need DB, uncomment depends_on:
+    depends_on:
+      - db
+      - web
+      - simulation
+    volumes:
+      - .:/app  # Optionally mount the entire project for live updates
+    # The default command is already in tests/Dockerfile (pytest),
+    # but you can override it here if needed:
+    # command: pytest --cov=my_module --cov-report=term-missing
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_NAME=monopoly
+
+
+volumes:
+  mongo_data:
