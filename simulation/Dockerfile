@@ -8,4 +8,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-CMD ["python", "sim.py"]
+CMD ["python", "monopoly_game.py"]

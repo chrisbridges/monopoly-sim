@@ -1,7 +1,8 @@
 # tests/test_monopoly_game.py
+from simulation.models.square import Square
+from simulation.game_engine.game import MonopolyGame
 import pytest
 import random
-from simulation.monopoly_game import MonopolyGame, Player, Square, create_monopoly_board
 
 @pytest.fixture
 def small_game():
