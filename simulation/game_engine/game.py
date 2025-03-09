@@ -1,11 +1,14 @@
 # game_engine/game.py
 
 import logging
-from simulation.models.board import create_monopoly_board
-from simulation.models.player import Player
-from . import actions
-from . import movement
-from . import jail
+
+from models.board import create_monopoly_board
+from models.player import Player
+# from ..models.board import create_monopoly_board
+# from ..models.player import Player
+from game_engine import actions
+from game_engine import movement
+from game_engine import jail
 
 logger = logging.getLogger(__name__)
 

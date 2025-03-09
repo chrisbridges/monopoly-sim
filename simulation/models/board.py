@@ -1,5 +1,5 @@
 from typing import List
-from simulation.models.square import Square
+from models.square import Square
 
 
 def create_monopoly_board() -> List[Square]:
