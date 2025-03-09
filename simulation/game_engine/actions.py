@@ -1,8 +1,8 @@
 # game_engine/actions.py
 
 import random
-from models.board import Square
-from models.player import Player
+from simulation.models.board import Square
+from simulation.models.player import Player
 
 def handle_square(player, square, players, logger):
     logger.info(f"{player.name} landed on {square.name} ({square.type}).")

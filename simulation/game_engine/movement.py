@@ -1,8 +1,12 @@
 # game_engine/movement.py
 import random
 
-def roll_and_move(player, board, logger):
-    dice_total = random.randint(1, 6) + random.randint(1, 6)
+def roll_dice():
+	dice_total = random.randint(1, 6) + random.randint(1, 6)
+	return dice_total
+
+def roll_and_move(player, board, logger): #TODO: rename
+    dice_total = roll_dice
     logger.info(f"{player.name} rolls {dice_total}.")
 
     old_position = player.position

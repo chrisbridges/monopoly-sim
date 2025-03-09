@@ -1,4 +1,5 @@
 # tests/test_monopoly_game.py
+from simulation.game_engine.movement import roll_dice
 from simulation.models.square import Square
 from simulation.game_engine.game import MonopolyGame
 import pytest
@@ -13,7 +14,7 @@ def small_game():
 def test_roll_dice(small_game):
     """Check dice roll is between 2 and 12."""
     for _ in range(100):
-        roll = small_game.roll_dice()
+        roll = roll_dice()
         assert 2 <= roll <= 12
 
 def test_move_player(small_game):

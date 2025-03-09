@@ -1,8 +1,8 @@
 # game_engine/game.py
 
 import logging
-from models.board import Square, create_monopoly_board
-from models.player import Player
+from simulation.models.board import create_monopoly_board
+from simulation.models.player import Player
 from . import actions
 from . import movement
 from . import jail
