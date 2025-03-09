@@ -38,7 +38,7 @@ class MonopolyGame:
                 return
         
         # 3) Move the player
-        dice_total = movement.roll_and_move(player, self.board, logger)
+        dice_total = movement.move(player, self.board, logger)
         
         # 4) Handle square logic
         square = self.board[player.position]

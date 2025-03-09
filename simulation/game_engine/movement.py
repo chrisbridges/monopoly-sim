@@ -5,7 +5,7 @@ def roll_dice():
 	dice_total = random.randint(1, 6) + random.randint(1, 6)
 	return dice_total
 
-def roll_and_move(player, board, logger): #TODO: rename
+def move(player, board, logger): #TODO: rename
     dice_total = roll_dice()
     logger.info(f"{player.name} rolls {dice_total}.")
 
