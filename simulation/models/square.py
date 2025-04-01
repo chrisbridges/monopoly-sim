@@ -1,10 +1,11 @@
 from dataclasses import dataclass
 from typing import List, Optional
+from models.square_types import SquareType
 
 @dataclass
 class Square:
     name: str
-    type: str  # e.g. "property", "railroad", "utility", "tax", "chance", "community_chest", "jail", "go", "free_parking", "go_to_jail"
+    type: SquareType
     position: int
     price: Optional[int] = None
     rent: Optional[List[int]] = None
