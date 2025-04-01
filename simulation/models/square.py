@@ -11,3 +11,5 @@ class Square:
     rent: Optional[List[int]] = None
     color: Optional[str] = None
     owner: Optional[str] = None  # Name or ID of the owning player (None if unowned)
+    houses: Optional[int] = 0
+    is_mortgaged: Optional[bool] = False
