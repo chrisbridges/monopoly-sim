@@ -1,3 +1,5 @@
+from enum import Enum
+
 class PropertyColors(Enum):
     """Enum for property colors in Monopoly."""
     BROWN = "brown"
