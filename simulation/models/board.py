@@ -9,7 +9,7 @@ def create_monopoly_board() -> List[Square]:
     Rents are from classic Monopoly for demonstration,
     but not all special logic (like railroads/utilities) is implemented here.
     """
-    board = [
+    board: List[Square] = [
         Square(name="Go", type=SquareType.GO, position=0),
         Square(name="Mediterranean Avenue", type=SquareType.PROPERTY, position=1, price=60, rent=[2, 10, 30, 90, 160, 250], color=PropertyColors.BROWN),
         Square(name="Community Chest", type=SquareType.COMMUNITY_CHEST, position=2),
