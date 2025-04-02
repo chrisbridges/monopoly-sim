@@ -9,6 +9,7 @@ def create_monopoly_board() -> List[Square]:
     Rents are from classic Monopoly for demonstration,
     but not all special logic (like railroads/utilities) is implemented here.
     """
+    # TODO: need to add mortagage values for all properties
     board: List[Square] = [
         Go(),
         Property(name="Mediterranean Avenue", position=1, price=60, rent=[2, 10, 30, 90, 160, 250], color=PropertyColors.BROWN, houses=0, owner=None),
