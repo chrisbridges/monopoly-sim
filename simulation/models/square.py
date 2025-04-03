@@ -23,12 +23,16 @@ class Property(Square):
     """
     Represents a property square on the Monopoly board.
     """
+    owner: str = None  # Name or ID of the owning player (None if unowned)
     price: int
     rent: List[int] # base rent, followed by rents for 1-5 houses
     color: str
     houses: int = 0 # 5 houses == hotel
-    owner: str = None  # Name or ID of the owning player (None if unowned)
+    cost_per_house: int
     is_mortgaged: bool = False
+    
+    def get_property_value(self) -> int:
+        return self.price + (self.houses * self.cost_per_house)
 
 @dataclass
 class Railroad(Square):
