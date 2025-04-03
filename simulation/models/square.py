@@ -97,3 +97,4 @@ class FreeParking(Square):
     """
     name = "Free Parking"
     position: int
+

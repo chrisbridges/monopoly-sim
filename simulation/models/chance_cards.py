@@ -6,7 +6,7 @@ CHANCE_CARDS = [
         description="Advance to Go (Collect $200)",
         action_type=CardActionTypes.MOVE,
         move_to_position=0
-        # You might handle the $200 as a separate rule for passing Go
+        # TODO: add amount to collect
     ),
     Card(
         description="Advance to Illinois Ave — If you pass Go, collect $200",

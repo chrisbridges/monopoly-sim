@@ -12,14 +12,16 @@ class Player:
     jail_turns: int = 0
     has_get_out_of_jail_free_card: bool = False # assume can only have 1 for now
     owned_properties: List[int] = field(default_factory=list)  # store board positions of owned squares
-    net_worth: int = 0
+    # net_worth: int = 0
 
-    def calculate_net_worth(self):
+    def calculate_net_worth(self) -> int:
         """
         Calculate the player's net worth based on their money and owned properties.
         For simplicity, we'll assume each property is worth its purchase price.
         """
-        self.net_worth = self.money + sum(self.get_property_value(pos) for pos in self.owned_properties)
+        # TODO: need to include property values as well as value of houses
+            # houses can be sold at half value
+        return self.money + sum(self.get_property_value(pos) for pos in self.owned_properties)
 
     def get_property_value(self, position: int) -> int:
         """
