@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from typing import List
 from models.square_types import SquareType
+from simulation.models.constants import CONSTANTS
 
 @dataclass
 class Square:
@@ -32,6 +33,9 @@ class Property(Square):
     is_mortgaged: bool = False
     
     def get_property_value(self) -> int:
+        # need to account if property is mortgaged
+        if self.is_mortgaged:
+            return self.price * CONSTANTS.MORTGAGE_DISCOUNT
         return self.price + (self.houses * self.cost_per_house)
 
 @dataclass
