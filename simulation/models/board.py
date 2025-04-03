@@ -19,7 +19,7 @@ def create_monopoly_board() -> List[Square]:
         Property(name="Baltic Avenue", position=3, price=60, 
                  mortgage=30, rent=[4, 20, 60, 180, 320, 450], 
                  color=PropertyColors.BROWN, houses=0, owner=None),
-        Tax(name="Income Tax", position=4, price=200), #rename "price" to "tax_amount" for clarity
+        Tax(name="Income Tax", position=4, tax=200), #rename "price" to "tax_amount" for clarity
         Railroad(name="Reading Railroad", position=5, price=200, 
                  mortgage=100, rent=[25, 50, 100, 200], owner=None),
         Property(name="Oriental Avenue", position=6, price=100, 
@@ -97,7 +97,7 @@ def create_monopoly_board() -> List[Square]:
         Property(name="Park Place", position=37, price=350, 
                  mortgage=175, rent=[35, 175, 500, 1100, 1300, 1500], 
                  color=PropertyColors.DARK_BLUE, houses=0, owner=None),
-        Tax(name="Luxury Tax", position=38, price=100),
+        Tax(name="Luxury Tax", position=38, tax=100),
         Property(name="Boardwalk", position=39, price=400, 
                  mortgage=200, rent=[50, 200, 600, 1400, 1700, 2000], 
                  color=PropertyColors.DARK_BLUE, houses=0, owner=None),

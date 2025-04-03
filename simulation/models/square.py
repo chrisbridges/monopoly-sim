@@ -63,7 +63,7 @@ class Tax(Square):
     """
     name: str
     position: int
-    price: int
+    tax: int
 
 @dataclass
 class Jail(Square):

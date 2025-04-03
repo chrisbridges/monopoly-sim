@@ -85,7 +85,7 @@ def calculate_tax(player: Player, square: Tax) -> int:
         player_net_worth = player.calculate_net_worth()
         return min(200, player_net_worth * 0.1)
     else:
-        return square.price
+        return square.tax
 
 def draw_chance():
     number_of_chance_cards = len(CHANCE_CARDS)
