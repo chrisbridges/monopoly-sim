@@ -4,7 +4,6 @@ from typing import List
 import random
 from models.board import Square
 from models.player import Player
-from models.square_types import SquareType
 from models.square import Chance, CommunityChest, GoToJail, Property, Railroad, Tax, Utility
 from game_engine import movement
 from models.chance_cards import CHANCE_CARDS
@@ -48,7 +47,7 @@ def handle_property(player: Player, property: Property, players: List[Player]) -
             print(f"{player.name} paid ${rent_amount} in rent to {property.owner}. Money: {player.money}")
 
 # TODO: extract all rent funcs into own file
-def calculate_rent(property: Property, property_owner: Player, player: Player) -> int:
+def calculate_rent(property: Property, property_owner: Player) -> int:
     if isinstance(property, Utility):
         return calculate_utility_rent(property_owner)
 

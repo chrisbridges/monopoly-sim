@@ -17,17 +17,8 @@ class Player:
     def calculate_net_worth(self) -> int:
         """
         Calculate the player's net worth based on their money and owned properties.
-        For simplicity, we'll assume each property is worth its purchase price.
+        Across the game, values are equivalent to their purchase price, unless mortgaged.
         """
         # TODO: need to include property values as well as value of houses
-            # houses can be sold at half value
         return self.money + sum(self.get_property_value(pos) for pos in self.owned_properties)
 
-    def get_property_value(self, position: int) -> int:
-        """
-        Get the value of a property based on its position.
-        This is a placeholder function. In a real game, you'd look up the property value from the board.
-        """
-        for property in board:
-            if property.position == position:
-                return property.price
