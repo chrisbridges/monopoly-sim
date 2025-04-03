@@ -20,17 +20,17 @@ services:
     container_name: monopoly_simulation
     volumes:
       - ./simulation:/app
-    depends_on:
+      # depends_on:
       # - db
-      - logging
-    environment:
-      - DATABASE_HOST=db
-      - DATABASE_NAME=monopoly
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "logging:24224"
-        tag: "{{.Name}}"
+      # - logging
+      # environment:
+      #   - DATABASE_HOST=db
+      #   - DATABASE_NAME=monopoly
+      # logging:
+      #   driver: "fluentd"
+      #   options:
+      #     fluentd-address: "logging:24224"
+      #     tag: "{{.Name}}"
       # db:
       #   image: mongo:latest
       #   container_name: monopoly_db
