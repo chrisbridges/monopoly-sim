@@ -14,6 +14,7 @@ def move(player, board): #TODO: rename
 
     # Passing GO
     if new_position < old_position:
+        # TODO: make pure passing go func
         player.money += 200
         print(f"{player.name} passed GO! +$200. Money: {player.money}")
 
