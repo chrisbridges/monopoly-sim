@@ -1,10 +1,9 @@
 import random
 from dataclasses import replace
-from typing import List, Tuple
+from typing import Tuple
 from models.player import Player
-from models.square import Square
-from game_engine import actions
 from models.constants import CONSTANTS
+from simulation.game_engine import actions
 
 def roll_dice() -> Tuple[int, int]:
     """Roll two dice and return their values."""
@@ -29,7 +28,7 @@ def move(player: Player) -> Player:
     new_doubles_count = player.doubles_count + 1 if rolled_doubles else 0
 
     if new_doubles_count == 3:
-        return actions.send_to_jail(player)
+        return send_to_jail(player)
 
     old_position = player.position
     new_position = (old_position + total) % CONSTANTS.BOARD_LENGTH
@@ -37,7 +36,7 @@ def move(player: Player) -> Player:
     # Handle passing GO: if new position is "before" the old one, add $200.
     new_money = player.money
     if new_position < old_position:
-        new_money += 200
+        return actions.give_player_go_money(player)
 
     # Create a new Player with updated state.
     return replace(player,
@@ -50,7 +49,7 @@ def advance_to_go(player: Player) -> Player:
     Move the player directly to GO and collect $200.
     This is a special case for certain cards or squares.
     """
-    return replace(player, position=0, money=player.money + 200)
+    return replace(player, position=0, money=player.money + CONSTANTS.GO_MONEY)
 
 def send_to_jail(player: Player) -> Player:
     print(f"{player.name} goes to Jail!")
@@ -59,3 +58,4 @@ def send_to_jail(player: Player) -> Player:
                    position=CONSTANTS.JAIL_POSITION, 
                    jail_turns=0, 
                    doubles_count=0)
+

@@ -23,7 +23,7 @@ def handle_square(player: Player, square: Square, players: List[Player]):
     elif isinstance(square, CommunityChest):
         draw_community_chest(player)
     elif isinstance(square, GoToJail):
-        send_to_jail(player)
+        movement.send_to_jail(player)
     # Jail, free parking, etc., do nothing special
 
 def handle_property(player: Player, property: Property, players: List[Player]) -> None:
@@ -137,3 +137,6 @@ def check_number_of_railroads_owned(property_owner: Player) -> int:
             railroad_counter += 1
 
     return railroad_counter
+
+def give_player_go_money(player: Player):
+    return replace(player, money=player.money + CONSTANTS.GO_MONEY)
