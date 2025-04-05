@@ -1,6 +1,9 @@
 # game_engine/jail.py
 
-def handle_jail_turn(player ):
+from models.player import Player
+
+
+def handle_jail_turn(player: Player):
     """Handle a turn for a player who is currently in jail."""
     if player.jail_turns < 2:
         player.jail_turns += 1

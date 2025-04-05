@@ -1,4 +1,8 @@
+from enum import Enum
+
 class CONSTANTS(Enum):
   MORTGAGE_PREMIUM = .10
   MORTGAGE_DISCOUNT = .50
   MAX_HOUSES = 5
+  BOARD_LENGTH = 40
+  JAIL_POSITION = 10

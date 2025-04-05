@@ -2,15 +2,16 @@
 
 from typing import List
 import random
+from dataclasses import replace
+from models.constants import CONSTANTS
 from models.board import Square
 from models.player import Player
 from models.square import Chance, CommunityChest, GoToJail, Property, Railroad, Tax, Utility
 from game_engine import movement
 from models.chance_cards import CHANCE_CARDS
 from models.community_chest_cards import COMMUNITY_CHEST_CARDS
+from game_engine import jail
 
-# TODO: make these state "handling" funcs as pure as possible
-# TODO: make all calculation funcs pure
 def handle_square(player: Player, square: Square, players: List[Player]):
     print(f"{player.name} landed on {square.name}.")
     if isinstance(square, Property):
@@ -30,19 +31,19 @@ def handle_property(player: Player, property: Property, players: List[Player]) -
     if property.owner is None:
         # Simplified "always buy if you can afford it"
         if player.money >= (property.price or 0):
-            property.owner = player.name
-            player.owned_properties.append(property.position)
-            player.money -= property.price
+            # property.owner = player.name
+            # player.owned_properties.append(property.position)
+            # player.money -= property.price
             print(f"{player.name} bought {property.name} for ${property.price}. Money: {player.money}")
     else:
         # Pay rent
         if property.owner != player.name:
             rent_amount = calculate_rent(property, property.owner, player)
-            player.money -= rent_amount
+            # player.money -= rent_amount
             # Find owner
             for p in players:
                 if p.name == property.owner:
-                    p.money += rent_amount
+                    # p.money += rent_amount
                     break
             print(f"{player.name} paid ${rent_amount} in rent to {property.owner}. Money: {player.money}")
 
@@ -98,15 +99,19 @@ def draw_community_chest(player: Player):
 
     return COMMUNITY_CHEST_CARDS[random_index]
 
-def send_to_jail(player: Player):
+def send_to_jail(player: Player) -> Player:
     print(f"{player.name} goes to Jail!")
-    player.position = 10
-    player.in_jail = True
-    player.jail_turns = 0
+    return replace(player, 
+                   in_jail=True, 
+                   position=CONSTANTS.JAIL_POSITION, 
+                   jail_turns=0, 
+                   doubles_count=0)
+
 
 def handle_bankruptcy(player: Player, board):
     print(f"{player.name} went bankrupt!")
     # TODO: bankrupter gets all of bankrupty's properties
+    # houses get sold back to bank at half price
     for pos in player.owned_properties:
         board[pos].owner = None
     player.owned_properties.clear()

@@ -25,6 +25,4 @@ class Player:
             if hasattr(square, 'owner') and square.owner == self.name:
                 if hasattr(square, 'get_property_value'):
                     property_value += square.get_property_value()
-                elif hasattr(square, 'price'):
-                    property_value += square.price
         return self.money + property_value

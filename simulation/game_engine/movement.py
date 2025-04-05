@@ -1,22 +1,49 @@
-# game_engine/movement.py
 import random
+from dataclasses import replace
+from typing import List, Tuple
+from models.player import Player
+from models.square import Square
+from game_engine import actions
+from models.constants import CONSTANTS
 
-def roll_dice():
-	dice_total = random.randint(1, 6) + random.randint(1, 6)
-	return dice_total
+def roll_dice() -> Tuple[int, int]:
+    """Roll two dice and return their values."""
+    dice1 = random.randint(1, 6)
+    dice2 = random.randint(1, 6)
+    return dice1, dice2
 
-def move(player, board): #TODO: rename
-    dice_total = roll_dice()
-    print(f"{player.name} rolls {dice_total}.")
+def move(player: Player, board: List[Square]) -> Player:
+    """
+    Pure function that simulates rolling dice and moving the player.
+    Returns a new Player state and the dice total.
+    
+    - Updates doubles_count: if the player rolled doubles, increments the count; otherwise resets it.
+    - Updates position based on dice roll.
+    - If the player passes GO (i.e. new position is numerically lower than old position), adds $200.
+    """
+    dice1, dice2 = roll_dice()
+    total = dice1 + dice2
+    rolled_doubles = (dice1 == dice2)
+    
+    # Update doubles_count: increment if doubles, otherwise reset to 0.
+    new_doubles_count = player.doubles_count + 1 if rolled_doubles else 0
+
+    if new_doubles_count == 3:
+        # Send player to jail if they rolled doubles three times in a row.
+        # abstract this - leverage in send to jail func
+        new_player = replace(player, in_jail=True, position=CONSTANTS.JAIL_POSITION)
+        return actions.send_to_jail(new_player)
 
     old_position = player.position
-    new_position = (old_position + dice_total) % len(board)
-
-    # Passing GO
+    new_position = (old_position + total) % CONSTANTS.BOARD_LENGTH
+    
+    # Handle passing GO: if new position is "before" the old one, add $200.
+    new_money = player.money
     if new_position < old_position:
-        # TODO: make pure passing go func
-        player.money += 200
-        print(f"{player.name} passed GO! +$200. Money: {player.money}")
+        new_money += 200
 
-    player.position = new_position
-    return dice_total
+    # Create a new Player with updated state.
+    return replace(player,
+                    money=new_money,
+                    position=new_position,
+                    doubles_count=new_doubles_count)

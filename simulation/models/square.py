@@ -33,7 +33,6 @@ class Property(Square):
     is_mortgaged: bool = False
     
     def get_property_value(self) -> int:
-        # need to account if property is mortgaged
         if self.is_mortgaged:
             return self.price * CONSTANTS.MORTGAGE_DISCOUNT
         return self.price + (self.houses * self.cost_per_house)
@@ -47,6 +46,11 @@ class Railroad(Square):
     owner: str = None
     rent: List[int]
     is_mortgaged: bool = False
+
+    def get_property_value(self) -> int:
+        if self.is_mortgaged:
+            return self.price * CONSTANTS.MORTGAGE_DISCOUNT
+        return self.price
 
 @dataclass
 class CommunityChest(Square):
@@ -97,6 +101,12 @@ class Utility(Square):
     price: int
     owner: str = None
     is_mortgaged: bool = False
+
+    def get_property_value(self) -> int:
+        if self.is_mortgaged:
+            # TODO: determine how to round this
+            return self.price * CONSTANTS.MORTGAGE_DISCOUNT
+        return self.price
 
 @dataclass
 class FreeParking(Square):

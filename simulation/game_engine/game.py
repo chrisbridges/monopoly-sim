@@ -36,6 +36,7 @@ def next_player(state: GameState) -> GameState:
     num_players = len(state.players)
     new_idx = (idx + 1) % num_players
     # Skip bankrupt players:
+    # reduundant check? Or infinite loop preventing?
     while state.players[new_idx].money < 0:
         new_idx = (new_idx + 1) % num_players
     return replace(state, current_player_index=new_idx)
@@ -43,7 +44,7 @@ def next_player(state: GameState) -> GameState:
 def play_turn(state: GameState) -> GameState:
     """Process one turn and return an updated game state."""
     current_idx = state.current_player_index
-    player = state.players[current_idx]
+    player: Player = state.players[current_idx]
 
     # 1) If player is bankrupt, skip to next player.
     if player.is_bankrupt:
@@ -54,7 +55,7 @@ def play_turn(state: GameState) -> GameState:
     # 2) If the player is in jail, handle jail.
     if player.in_jail:
         # Assume jail.handle_jail_turn returns a new Player state.
-        new_player = jail.handle_jail_turn(player)
+        new_player: Player = jail.handle_jail_turn(player)
         # Update players list immutably:
         new_players = list(state.players)
         new_players[current_idx] = new_player
@@ -67,7 +68,7 @@ def play_turn(state: GameState) -> GameState:
 
     # 3) Move the player.
     # Assume movement.move returns a tuple (new_player, dice_total)
-    moved_player, dice_total = movement.move(player, state.board)
+    moved_player = movement.move(player, state.board)
     new_players = list(new_state.players)
     new_players[current_idx] = moved_player
     new_state = replace(new_state, players=new_players)
@@ -82,6 +83,9 @@ def play_turn(state: GameState) -> GameState:
         new_state = actions.handle_bankruptcy(new_state, moved_player)
     
     # (Optionally: reset doubles count, etc.)
+    # while player_rolled_doubles is greater than 1 and less than 3:
+    #  play turn again
+    # else: send to jail
     
     # 6) Advance to the next player.
     return next_player(new_state)
