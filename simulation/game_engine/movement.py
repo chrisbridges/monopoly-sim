@@ -12,7 +12,7 @@ def roll_dice() -> Tuple[int, int]:
     dice2 = random.randint(1, 6)
     return dice1, dice2
 
-def move(player: Player, board: List[Square]) -> Player:
+def move(player: Player) -> Player:
     """
     Pure function that simulates rolling dice and moving the player.
     Returns a new Player state and the dice total.
@@ -44,3 +44,18 @@ def move(player: Player, board: List[Square]) -> Player:
                     money=new_money,
                     position=new_position,
                     doubles_count=new_doubles_count)
+
+def advance_to_go(player: Player) -> Player:
+    """
+    Move the player directly to GO and collect $200.
+    This is a special case for certain cards or squares.
+    """
+    return replace(player, position=0, money=player.money + 200)
+
+def send_to_jail(player: Player) -> Player:
+    print(f"{player.name} goes to Jail!")
+    return replace(player, 
+                   in_jail=True, 
+                   position=CONSTANTS.JAIL_POSITION, 
+                   jail_turns=0, 
+                   doubles_count=0)
