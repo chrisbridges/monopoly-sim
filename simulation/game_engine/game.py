@@ -83,9 +83,6 @@ def play_turn(state: GameState) -> GameState:
         new_state = actions.handle_bankruptcy(new_state, moved_player)
     
     # (Optionally: reset doubles count, etc.)
-    # while player_rolled_doubles is greater than 1 and less than 3:
-    #  play turn again
-    # else: send to jail
     
     # 6) Advance to the next player.
     return next_player(new_state)

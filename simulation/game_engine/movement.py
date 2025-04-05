@@ -29,10 +29,7 @@ def move(player: Player, board: List[Square]) -> Player:
     new_doubles_count = player.doubles_count + 1 if rolled_doubles else 0
 
     if new_doubles_count == 3:
-        # Send player to jail if they rolled doubles three times in a row.
-        # abstract this - leverage in send to jail func
-        new_player = replace(player, in_jail=True, position=CONSTANTS.JAIL_POSITION)
-        return actions.send_to_jail(new_player)
+        return actions.send_to_jail(player)
 
     old_position = player.position
     new_position = (old_position + total) % CONSTANTS.BOARD_LENGTH
