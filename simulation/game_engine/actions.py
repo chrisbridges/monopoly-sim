@@ -99,15 +99,6 @@ def draw_community_chest(player: Player):
 
     return COMMUNITY_CHEST_CARDS[random_index]
 
-def send_to_jail(player: Player) -> Player:
-    print(f"{player.name} goes to Jail!")
-    return replace(player, 
-                   in_jail=True, 
-                   position=CONSTANTS.JAIL_POSITION, 
-                   jail_turns=0, 
-                   doubles_count=0)
-
-
 def handle_bankruptcy(player: Player, board):
     print(f"{player.name} went bankrupt!")
     # TODO: bankrupter gets all of bankrupty's properties

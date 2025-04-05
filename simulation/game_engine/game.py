@@ -68,7 +68,7 @@ def play_turn(state: GameState) -> GameState:
 
     # 3) Move the player.
     # Assume movement.move returns a tuple (new_player, dice_total)
-    moved_player = movement.move(player, state.board)
+    moved_player = movement.move(player)
     new_players = list(new_state.players)
     new_players[current_idx] = moved_player
     new_state = replace(new_state, players=new_players)
