@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import List
-from models.square_types import SquareType
-from simulation.models.constants import CONSTANTS
+from models.constants import CONSTANTS
 
 @dataclass
 class Square:
