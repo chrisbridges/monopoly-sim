@@ -1,5 +1,5 @@
 from models.cards import Card
-from simulation.models.card_action_types import CardActionTypes
+from models.card_action_types import CardActionTypes
 
 CHANCE_CARDS = [
     Card(
@@ -58,7 +58,7 @@ CHANCE_CARDS = [
     Card(
         description="Take a trip to Reading Railroad — If you pass Go, collect $200",
         action_type=CardActionTypes.MOVE,
-        move_to_position=5  # position 5 is Reading Railroad
+        move_to_position=5
     ),
     Card(
         description="Take a walk on the Boardwalk — Advance token to Boardwalk",
