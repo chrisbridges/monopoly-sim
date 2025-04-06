@@ -49,7 +49,7 @@ def advance_to_go(player: Player) -> Player:
     Move the player directly to GO and collect $200.
     This is a special case for certain cards or squares.
     """
-    return replace(player, position=0, money=player.money + CONSTANTS.GO_MONEY)
+    return replace(player, position=CONSTANTS.GO_POSITION, money=player.money + CONSTANTS.GO_MONEY)
 
 def send_to_jail(player: Player) -> Player:
     print(f"{player.name} goes to Jail!")
