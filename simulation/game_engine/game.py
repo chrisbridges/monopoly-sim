@@ -76,6 +76,8 @@ def play_turn(state: GameState) -> GameState:
     # 4) Handle the square logic.
     square = new_state.board[moved_player.position]
     # Assume actions.handle_square returns an updated game state.
+    # TODO: fix these args
+        # i only need to pass in what's novel? Board and square, etc can be claimed from state
     new_state = actions.handle_square(new_state, moved_player, square)
     
     # 5) If the move caused bankruptcy, update state accordingly.

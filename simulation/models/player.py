@@ -26,3 +26,21 @@ class Player:
                 if hasattr(square, 'get_property_value'):
                     property_value += square.get_property_value()
         return self.money + property_value
+    
+    def calculate_bankruptcy_value(self, board: List) -> int:
+        """
+        Calculate the player's bankruptcy value based on their money plus the value of properties they own.
+        Ownership is determined by scanning the board: each square that has an 'owner' attribute matching
+        the player's name contributes its value.
+        
+        Assumes that property squares have either a `get_property_value()` method or a `price` attribute.
+        """
+        property_value = 0
+        jail_card_value = 50 if self.has_get_out_of_jail_free_card else 0
+
+        for square in board:
+            if hasattr(square, 'owner') and square.owner == self.name:
+                if hasattr(square, 'get_property_value'):
+                    property_value += square.get_bankruptcy_value()
+
+        return self.money + property_value + jail_card_value

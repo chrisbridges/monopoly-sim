@@ -35,6 +35,14 @@ class Property(Square):
         if self.is_mortgaged:
             return self.price * CONSTANTS.MORTGAGE_DISCOUNT
         return self.price + (self.houses * self.cost_per_house)
+    
+    def get_bankruptcy_value(self) -> int:
+        """
+        Calculate the value of the property for bankruptcy purposes.
+        """
+        if self.is_mortgaged:
+            return 0
+        return self.price + (self.houses * self.cost_per_house * CONSTANTS.HOUSE_RESELL_VALUE)
 
 @dataclass
 class Railroad(Square):
