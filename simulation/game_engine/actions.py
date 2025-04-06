@@ -220,3 +220,6 @@ def check_number_of_railroads_owned(property_owner: Player) -> int:
 
 def give_player_go_money(player: Player):
     return replace(player, money=player.money + CONSTANTS.GO_MONEY)
+
+def reset_doubles_count(player: Player) -> Player:
+    return replace(player, doubles_count=0)
